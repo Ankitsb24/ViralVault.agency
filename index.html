@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIRAL VAULT | Ankit Singh Bhandari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;900&family=Inter:wght@900&display=swap" rel="stylesheet">
+    
+    <!-- CDNs for Smooth Scroll and Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <link rel="stylesheet" href="./base.css">
+    <style>
+        .hero-kinetic {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .kinetic-word {
+            font-size: clamp(4rem, 15vw, 15rem);
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            position: relative;
+            margin: 0;
+        }
+
+        .kinetic-word.solid {
+            color: #fff;
+            -webkit-text-stroke: 0;
+            z-index: 2;
+        }
+
+        .nav-pill {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(20px);
+            padding: 0.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .nav-link {
+            padding: 0.8rem 1.8rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #fff;
+            border-radius: 50px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+        }
+
+        .section-label {
+            position: absolute;
+            left: 2rem;
+            bottom: 2rem;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--text-muted);
+            transform: rotate(-90deg);
+            transform-origin: left bottom;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            margin: 1rem;
+            padding: 1.5rem 3rem;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-decoration: none;
+            transition: all 0.4s ease;
+            background: rgba(255,255,255,0.02);
+            border-radius: 4px;
+        }
+        
+        .contact-btn:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="light-source" id="light"></div>
+
+    <nav class="nav-pill glass">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <main>
+        <section id="hero" class="hero-kinetic">
+            <div class="section-label">Perspective // 01</div>
+            <h1 class="kinetic-text kinetic-word" id="word-1">VIRAL</h1>
+            <h1 class="kinetic-text kinetic-word solid" id="word-2">VAULT</h1>
+            <div style="margin-top: 3rem; text-align: center;">
+                <p style="font-weight: 300; letter-spacing: 0.5em; text-transform: uppercase; font-size: 0.8rem; color: #fff;">Founded by Ankit Singh Bhandari</p>
+                <p style="color: var(--text-muted); margin-top: 0.5rem; letter-spacing: 0.2em; font-size: 0.6rem; text-transform: uppercase;">Short-Form Content Agency</p>
+            </div>
+        </section>
+
+        <header class="work-header" id="work">
+            <h2 class="work-title">WORK</h2>
+        </header>
+
+        <div class="reel-wrapper">
+            <div class="section-label">Archive // 02</div>
+            <div class="reel-grid">
+                <!-- HORIZONTAL — lazy loaded, iframe injected on scroll -->
+                <div class="reel-item reel-h" data-video-id="6a8HHqCtDQ8"></div>
+                <div class="reel-item reel-h" data-video-id="q6lyx6dEFsE"></div>
+                <div class="reel-item reel-h" data-video-id="QPJpqhDRHYA"></div>
+                <div class="reel-item reel-h" data-video-id="RIAAHqNZPLo"></div>
+                <div class="reel-item reel-h" data-video-id="pcDIa8yNcX8"></div>
+                <div class="reel-item reel-h" data-video-id="5-eTZLvJv-E"></div>
+                <div class="reel-item reel-h" data-video-id="Is4Qlz-IotE"></div>
+                <div class="reel-item reel-h" data-video-id="qaEPhBpOsFI"></div>
+                <div class="reel-item reel-h" data-video-id="yx0j9FwZDWs"></div>
+                <div class="reel-item reel-h" data-video-id="dE1OeWj9d_4"></div>
+                <div class="reel-item reel-h" data-video-id="GzdprTH7rxY"></div>
+                <div class="reel-item reel-h" data-video-id="ryi9Ti1Uwu0"></div>
+                <div class="reel-item reel-h" data-video-id="uXDvhe2eASA"></div>
+                <div class="reel-item reel-h" data-video-id="CQ327V2zk5Y"></div>
+
+                <!-- VERTICAL — lazy loaded, iframe injected on scroll -->
+                <div class="reel-item reel-v" data-video-id="HX5mBSquxcs"></div>
+                <div class="reel-item reel-v" data-video-id="bAJSjZNNHy0"></div>
+                <div class="reel-item reel-v" data-video-id="jhovV9zy6dY"></div>
+                <div class="reel-item reel-v" data-video-id="R9BHro51YVE"></div>
+                <div class="reel-item reel-v" data-video-id="YG7jB1UQC_U"></div>
+                <div class="reel-item reel-v" data-video-id="ezmaJ6tYVoc"></div>
+                <div class="reel-item reel-v" data-video-id="N9SThNYKfFg"></div>
+                <div class="reel-item reel-v" data-video-id="Vnw6LONzDaQ"></div>
+                <div class="reel-item reel-v" data-video-id="S4H7GrqdQ-g"></div>
+                <div class="reel-item reel-v" data-video-id="m_Vu-ix7e3I"></div>
+                <div class="reel-item reel-v" data-video-id="J7X2EYj_54Q"></div>
+                <div class="reel-item reel-v" data-video-id="GUOJ4QlmIqs"></div>
+                <div class="reel-item reel-v" data-video-id="abo1MLzqA5Q"></div>
+                <div class="reel-item reel-v" data-video-id="m_C1kP65Vs4"></div>
+            </div>
+        </div>
+
+        <section id="contact" style="height: 100vh; display: flex; align-items: center; justify-content: center; position: relative;">
+            <div class="section-label">Connect // 03</div>
+            <div class="container" style="max-width: 1000px; text-align: center;">
+                <h2 style="font-size: clamp(3rem, 8vw, 6rem); margin-bottom: 3rem; font-family: var(--font-display);">Ready for the Vault?</h2>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-top: 2rem;">
+                    <a href="https://api.whatsapp.com/send/?phone=%2B917838401585&text&type=phone_number&app_absent=0" target="_blank" class="contact-btn" style="font-size: 2rem; padding: 2rem 5rem; border-radius: 100px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);">WHATSAPP ME</a>
+                    <p style="color: var(--text-muted); font-size: 1.2rem; letter-spacing: 0.1em; font-weight: 300;">work.ankit024@gmail.com</p>
+                </div>
+                <p style="margin-top: 4rem; color: var(--text-muted); letter-spacing: 0.5em; text-transform: uppercase; font-size: 0.7rem;">Ankit Singh Bhandari // Viral Vault Agency</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="./main.js"></script>
+</body>
+</html>
