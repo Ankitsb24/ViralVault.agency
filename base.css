@@ -1,0 +1,303 @@
+:root {
+  /* Colors */
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --text-muted: #666666;
+  --accent-blue: #4285f4;
+  --accent-purple: #9b72cb;
+  --accent-pink: #d96570;
+  
+  /* Typography */
+  --font-main: 'Outfit', sans-serif;
+  --font-display: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background-image: 
+    radial-gradient(circle at 50% -20%, rgba(66, 133, 244, 0.08), transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(155, 114, 203, 0.05), transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Minimal Floating Pill Nav */
+.nav-pill {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(20px);
+  padding: 0.5rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.nav-link {
+  padding: 0.8rem 1.8rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #fff;
+  border-radius: 50px;
+  transition: background 0.3s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* Work Section Heading */
+.work-header {
+  padding: 5rem 2rem 2rem 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.work-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0.1;
+  letter-spacing: 0.2em;
+  line-height: 1;
+}
+
+/* Reel Wall Masonry */
+.reel-wrapper {
+  padding: 0 2rem 15vh 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.reel-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+}
+
+.reel-item {
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+}
+
+/* Ratios */
+.reel-v {
+  grid-column: span 2;
+  aspect-ratio: 9 / 16;
+}
+
+.reel-h {
+  grid-column: span 3;
+  aspect-ratio: 16 / 9;
+}
+
+.reel-item video,
+.reel-item iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: opacity 0.5s ease;
+  border: none;
+  /* Block all clicks on the iframe — prevents YouTube redirect */
+  pointer-events: none;
+}
+
+.reel-item:hover video,
+.reel-item:hover iframe {
+  opacity: 1;
+}
+
+/* Transparent overlay that intercepts all clicks, blurs paused video to hide YouTube branding */
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px) brightness(0.7);
+  -webkit-backdrop-filter: blur(12px) brightness(0.7);
+  transition: background 0.6s cubic-bezier(0.25, 1, 0.5, 1), backdrop-filter 0.6s cubic-bezier(0.25, 1, 0.5, 1), -webkit-backdrop-filter 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reel-item.is-playing .video-overlay {
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px) brightness(1);
+  -webkit-backdrop-filter: blur(0px) brightness(1);
+}
+
+/* Play indicator — sleek glassmorphic circle with triangle */
+.play-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.play-indicator svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  margin-left: 3px; /* visual alignment of triangle */
+}
+
+/* Hover scales play indicator */
+.reel-item:hover .play-indicator {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* When playing, fade out play indicator */
+.reel-item.is-playing .play-indicator {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+}
+
+/* Progress bar — thin line at the very bottom */
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #fff;
+  transition: width 0.4s linear;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* Mute / unmute button — top-right corner glassmorphic pill */
+.mute-btn {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 30;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+
+.reel-item:hover .mute-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mute-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.mute-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+  pointer-events: none;
+}
+
+
+/* Responsive Refinements */
+@media (max-width: 768px) {
+  .reel-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .reel-h, .reel-v {
+    grid-column: span 2; /* Full width on small mobile */
+  }
+
+  .work-title {
+    font-size: 3rem;
+  }
+
+  .section-label {
+    font-size: 0.5rem;
+    left: 1rem;
+  }
+
+  #contact h2 {
+    font-size: 2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .contact-btn {
+    font-size: 1rem !important;
+    padding: 1rem 2rem !important;
+    width: auto !important;
+    min-width: 200px;
+  }
+}
+
+/* Tablet Refinements */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .reel-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .reel-v {
+    grid-column: span 2; /* 2 per row */
+  }
+  .reel-h {
+    grid-column: span 4; /* 1 per row for balance */
+  }
+}
+
+/* Glassmorphism Refined */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
